@@ -2,7 +2,7 @@ import React, { useState, createContext, useContext, FC } from "react";
 
 interface IContextContent {
 	playerData: IPlayer;
-	setPlayerData: Function;
+	setPlayerData: React.Dispatch<React.SetStateAction<IPlayer>>;
 }
 
 export const UserContext = createContext({} as IContextContent);
