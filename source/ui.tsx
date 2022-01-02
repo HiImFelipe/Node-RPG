@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 
-import UserProvider from "./contexts/userContext";
+import PlayerProvider from "./contexts/playerContext";
 import SceneLoader from "./scenes/SceneLoader";
 
 const App: FC = () => {
 	return (
-		<UserProvider>
+		<PlayerProvider>
 			<SceneLoader />
-		</UserProvider>
+		</PlayerProvider>
 	);
 };
 
