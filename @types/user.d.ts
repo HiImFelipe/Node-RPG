@@ -4,4 +4,5 @@ interface IUser {
 	attack: number;
 	defense: number;
 	speed: number;
+	currentMap?: string;
 }
