@@ -1,11 +1,10 @@
 import React, { FC, useEffect, useState } from "react";
 
-//import { useUser } from "../contexts/userContext";
+import { useUser } from "../contexts/userContext";
 import Menu from "./menu";
 
 const SceneLoader: FC = () => {
-	//const { userData } = useUser();
-	const userData = { currentMap: "training field" };
+	const { userData } = useUser();
 	const [componentToRender, SetComponentToRender] = useState(() => Menu);
 
 	useEffect(() => {
