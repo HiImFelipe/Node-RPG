@@ -1,11 +1,6 @@
+import { ARCHER_ABILITIES } from "../constants/specialAbilities";
+import { DEFAULT_ARCHER_VALUES } from "../constants/defaultStats";
 import { Player } from "./Player";
-import { archerAbilities } from "../constants/specialAbilities";
-
-const DEFAULT_ARCHER_VALUES = {
-	speed: 3,
-	attack: 5,
-	defense: 2,
-};
 
 export class Archer extends Player {
 	constructor() {
@@ -16,9 +11,19 @@ export class Archer extends Player {
 		);
 	}
 
-	addSpecialAbility(id: number) {
-		const specialAbility = archerAbilities.find((item) => item.id === id);
+	private lookForSpecialAbility(id: number) {
+		return ARCHER_ABILITIES.find((item) => item.id === id);
+	}
+
+	public addSpecialAbility(id: number) {
+		const specialAbility = this.lookForSpecialAbility(id);
 
 		if (specialAbility) this.specialAbilities.push(specialAbility);
+	}
+
+	public replaceSpecialAbility(currentSlot: number, id: number) {
+		const specialAbility = this.lookForSpecialAbility(id);
+
+		if (specialAbility) this.specialAbilities[currentSlot - 1] = specialAbility;
 	}
 }
