@@ -5,22 +5,22 @@ import Menu from "./menu";
 
 const SceneLoader: FC = () => {
 	const { userData } = useUser();
-	const [componentToRender, SetComponentToRender] = useState(() => Menu);
+	const [ComponentToRender, SetComponentToRender] = useState<any>();
 
 	useEffect(() => {
 		const importDynamicComponent = async () => {
 			if (userData && userData.currentMap) {
-				const {default: Component} = await import(`./${userData.currentMap}`);
+				const { default: Component } = await import(`./${userData.currentMap}`);
 				return SetComponentToRender(() => Component);
 			}
 
-			return null;
+			return SetComponentToRender(() => Menu);
 		};
 
 		importDynamicComponent();
 	}, []);
 
-	return React.createElement(componentToRender);
+	return ComponentToRender ? <ComponentToRender /> : null;
 };
 
 export default SceneLoader;
