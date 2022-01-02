@@ -1,6 +1,8 @@
 # NodeRPG
 
-Role-Playing game inside the terminal with Ink and React!
+![image](https://i.imgur.com/8ofNXK9.png)
+
+<p align='center'>Role-Playing Game inside the terminal with Ink and React!</p>
 
 ## Running in your machine
 
