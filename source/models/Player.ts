@@ -9,4 +9,5 @@ export abstract class Player implements IPlayer {
 	}
 
 	abstract addSpecialAbility(id: number): void;
+	abstract replaceSpecialAbility(currentSlot: number, id: number): void;
 }
