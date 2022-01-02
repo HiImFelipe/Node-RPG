@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext } from "react";
+import React, { useState, createContext, useContext, FC } from "react";
 
 interface IContextContent {
 	userData: IUser;
@@ -7,7 +7,7 @@ interface IContextContent {
 
 export const UserContext = createContext({} as IContextContent);
 
-const UserProvider = ({ children }) => {
+const UserProvider: FC = ({ children }) => {
 	const [userData, setUserData] = useState({
 		name: "",
 		job: "",
