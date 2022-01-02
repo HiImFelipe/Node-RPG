@@ -20,7 +20,7 @@ const SceneLoader: FC = () => {
 		};
 
 		importDynamicComponent();
-	}, []);
+	}, [playerData]);
 
 	return ComponentToRender ? <ComponentToRender /> : null;
 };
