@@ -2,8 +2,8 @@ import React, { FC } from "react";
 import { Box, Text, useApp } from "ink";
 import SelectInput from "ink-select-input";
 
-import TrainingField from "../training field";
 import colors from "../../constants/colors";
+import { usePlayer } from "../../contexts/playerContext";
 
 interface IOption {
 	label: string;
@@ -23,11 +23,15 @@ const options: IOption[] = [
 
 const Menu: FC = () => {
 	const { exit } = useApp();
+	const { setPlayerData } = usePlayer();
 
 	const handleSelect = (item: IOption) => {
 		switch (item.value) {
 			case "newgame":
-				return <TrainingField />;
+				return setPlayerData((prevPlayerData) => ({
+					...prevPlayerData,
+					currentMap: "training field",
+				}));
 			case "quit":
 				return exit();
 			default:
@@ -36,9 +40,14 @@ const Menu: FC = () => {
 	};
 
 	return (
-		<Box flexDirection="column" borderStyle="double" padding={1}>
+		<Box
+			flexDirection="column"
+			borderStyle="double"
+			padding={1}
+			alignItems="center"
+		>
 			<Box marginBottom={2} marginLeft={2}>
-				<Text>
+				<Text bold>
 					Welcome to <Text color={colors.primary}>Node RPG</Text>!
 				</Text>
 			</Box>
