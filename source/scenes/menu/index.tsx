@@ -5,11 +5,6 @@ import SelectInput from "ink-select-input";
 import colors from "../../constants/colors";
 import { usePlayer } from "../../contexts/playerContext";
 
-interface IOption {
-	label: string;
-	value: string;
-}
-
 const options: IOption[] = [
 	{
 		label: "New Game",
@@ -30,7 +25,7 @@ const Menu: FC = () => {
 			case "newgame":
 				return setPlayerData((prevPlayerData) => ({
 					...prevPlayerData,
-					currentMap: "training field",
+					currentMap: "character creation",
 				}));
 			case "quit":
 				return exit();
