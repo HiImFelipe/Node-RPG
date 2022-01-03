@@ -10,10 +10,15 @@ const SceneLoader: FC = () => {
 	useEffect(() => {
 		const importDynamicComponent = async () => {
 			if (playerData && playerData.currentMap) {
-				const { default: Component } = await import(
-					`./${playerData.currentMap}`
-				);
-				return SetComponentToRender(() => Component);
+				try {
+					const { default: Component } = await import(
+						`./${playerData.currentMap}`
+					);
+
+					return SetComponentToRender(() => Component);
+				} catch (e) {
+					console.log(e);
+				}
 			}
 
 			return SetComponentToRender(() => Menu);
