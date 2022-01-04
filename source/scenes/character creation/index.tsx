@@ -5,8 +5,9 @@ import SelectInput from "ink-select-input/build";
 
 import colors from "../../constants/colors";
 import { usePlayer } from "../../contexts/playerContext";
+import { DialogBox } from "../../components/DialogBox";
 
-const steps = ["Name creation", "Class selection"];
+const MAX_STEPS_NUMBER = 4;
 const roleOptions: IOption[] = [
 	{
 		label: "Archer",
@@ -24,24 +25,26 @@ const CharacterCreation = () => {
 	const { setPlayerData } = usePlayer();
 
 	const advanceStep = () => {
-		if (currentStep < steps.length - 1)
+		if (currentStep <= MAX_STEPS_NUMBER)
 			setCurrentStep((prevStep) => prevStep + 1);
 	};
 
 	const handleSelect = (item: IOption) => {
 		switch (item.value) {
 			case "archer":
-				return setPlayerData((prevPlayerData) => ({
+				setPlayerData((prevPlayerData) => ({
 					...prevPlayerData,
 					job: "Archer",
-					currentMap: "training field",
 				}));
+
+				return advanceStep();
 			case "knight":
-				return setPlayerData((prevPlayerData) => ({
+				setPlayerData((prevPlayerData) => ({
 					...prevPlayerData,
 					job: "Knight",
-					currentMap: "training field",
 				}));
+
+				return advanceStep();
 			default:
 				return;
 		}
@@ -71,6 +74,18 @@ const CharacterCreation = () => {
 							color={colors.contrast}
 							onSelect={handleSelect}
 						/>
+					</Box>
+				);
+			case 2:
+				return (
+					<Box>
+						<DialogBox text="Foo" onPlayerSkip={advanceStep} />
+					</Box>
+				);
+			case 3:
+				return (
+					<Box>
+						<Text>Bar</Text>
 					</Box>
 				);
 			default:
