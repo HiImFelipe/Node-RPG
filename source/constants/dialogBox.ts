@@ -1,0 +1,1 @@
+export const CHARACTER_DRAW_SPEED = 200;
