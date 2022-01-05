@@ -1,1 +1,1 @@
-export const CHARACTER_DRAW_SPEED = 200;
+export const CHARACTER_DRAW_SPEED = 100;
