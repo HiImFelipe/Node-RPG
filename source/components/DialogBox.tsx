@@ -1,5 +1,5 @@
 import { Newline, Text, useInput } from "ink";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 
 import { CHARACTER_DRAW_SPEED } from "../constants/dialogBox";
 
@@ -18,6 +18,7 @@ interface IProps {
 
 const DialogBox: FC<IProps> = ({ text, onPlayerSkip }) => {
 	const [textToDisplay, setTextToDisplay] = useState("");
+	const interval = useRef<number>();
 
 	useInput((_, key) => {
 		if (key.return) {
@@ -27,10 +28,10 @@ const DialogBox: FC<IProps> = ({ text, onPlayerSkip }) => {
 
 	useEffect(() => {
 		const renderTextOverTime = () => {
-			const intervalId = setInterval(() => {
+			interval.current = +setInterval(() => {
 				setTextToDisplay((prevText) => {
 					if (prevText.length >= text.length) {
-						clearInterval(intervalId);
+						clearInterval(interval.current);
 
 						return prevText;
 					}
@@ -41,6 +42,10 @@ const DialogBox: FC<IProps> = ({ text, onPlayerSkip }) => {
 		};
 
 		renderTextOverTime();
+
+		return () => {
+			clearInterval(interval.current);
+		};
 	}, []);
 
 	return (
