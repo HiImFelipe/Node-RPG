@@ -13,4 +13,6 @@ interface IPlayer {
 	speed: number;
 	currentMap?: string;
 	specialAbilities: ISpecialAbility[];
+	addSpecialAbility(id: number): void;
+	replaceSpecialAbility(currentSlot: number, id: number): void;
 }
