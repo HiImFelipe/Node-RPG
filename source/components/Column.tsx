@@ -1,11 +1,11 @@
 import { Box } from "ink";
 import React, { FC } from "react";
 
-interface IProps {
-	[key: string]: any;
-}
+/**
+ * Ink default Box with flexDirection set to column.
+ */
 
-const Column: FC<IProps> = ({ children, ...props }) => {
+const Column: FC<typeof Box.defaultProps> = ({ children, ...props }) => {
 	return (
 		<Box flexDirection="column" {...props}>
 			{children}
