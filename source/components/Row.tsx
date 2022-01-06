@@ -2,7 +2,6 @@ import { Box } from "ink";
 import React, { FC } from "react";
 
 interface IProps {
-	children: any;
 	[key: string]: any;
 }
 
