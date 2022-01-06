@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, Text } from "ink";
 
-import EventRender from "../../components/DynamicComponentRender";
+import { DynamicComponentRender as EventRender } from "../../components";
 
 export interface IEventsHandler {
 	currentEvent: string;

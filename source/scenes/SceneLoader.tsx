@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 
 import { usePlayer } from "../contexts/playerContext";
-import SceneRender from "../components/DynamicComponentRender";
+import { DynamicComponentRender as SceneRender } from "../components";
 
 const SceneLoader: FC = () => {
 	const { playerData } = usePlayer();

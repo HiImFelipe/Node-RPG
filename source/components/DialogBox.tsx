@@ -56,4 +56,4 @@ const DialogBox: FC<IProps> = ({ text, onPlayerSkip }) => {
 	);
 };
 
-export { DialogBox };
+export default DialogBox;
