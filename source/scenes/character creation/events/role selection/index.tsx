@@ -5,6 +5,7 @@ import SelectInput from "ink-select-input";
 import colors from "../../../../constants/colors";
 import { usePlayer } from "../../../../contexts/playerContext";
 import { IEventsHandler } from "../..";
+import { Archer, Knight } from "../../../../models";
 
 interface IProps {
 	setEventsData: React.Dispatch<React.SetStateAction<IEventsHandler>>;
@@ -21,27 +22,28 @@ const roleOptions: IOption[] = [
 	},
 ];
 
-const RoleSelection: FC<IProps> = ({}) => {
+const RoleSelection: FC<IProps> = ({ setEventsData }) => {
 	const { setPlayerData } = usePlayer();
 
 	const postSelect = () => {
-		// setEventsData(prevEventsData => ({...prevEventsData, currentEvent: ''}))
+		setEventsData((prevEventsData) => ({
+			...prevEventsData,
+			currentEvent: "name selection",
+		}));
 	};
 
 	const handleSelect = (item: IOption) => {
 		switch (item.value) {
 			case "archer":
-				setPlayerData((prevPlayerData) => ({
-					...prevPlayerData,
-					job: "Archer",
-				}));
+				const archer = new Archer();
+				setPlayerData((prevPlayerData) => ({ ...prevPlayerData, ...archer }));
 
 				return postSelect();
 			case "knight":
-				setPlayerData((prevPlayerData) => ({
-					...prevPlayerData,
-					job: "Knight",
-				}));
+				const knight = new Knight();
+				setPlayerData((prevPlayerData) => ({ ...prevPlayerData, ...knight }));
+
+				setPlayerData(new Knight());
 
 				return postSelect();
 			default:

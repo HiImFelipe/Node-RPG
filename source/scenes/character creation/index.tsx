@@ -11,7 +11,7 @@ const PATH_RELATIVE_TO_SOURCE = "scenes/character creation";
 
 const CharacterCreation = () => {
 	const [eventsData, setEventsData] = useState<IEventsHandler>({
-		currentEvent: "name selection",
+		currentEvent: "role selection",
 	});
 
 	return (
