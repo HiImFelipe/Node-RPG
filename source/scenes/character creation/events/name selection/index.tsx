@@ -9,7 +9,7 @@ interface IProps {
 	setEventsData: React.Dispatch<React.SetStateAction<IEventsHandler>>;
 }
 
-const NameSelection: FC<IProps> = ({ setEventsData }) => {
+const NameSelection: FC<IProps> = ({}) => {
 	const [name, setName] = useState("");
 	const { setPlayerData } = usePlayer();
 
@@ -25,10 +25,10 @@ const NameSelection: FC<IProps> = ({ setEventsData }) => {
 				onSubmit={() => {
 					if (name.length < 3) return;
 
-					setPlayerData((prevPlayerData) => ({ ...prevPlayerData, name }));
-					setEventsData((prevEventsData) => ({
-						...prevEventsData,
-						currentEvent: "role selection",
+					setPlayerData((prevPlayerData) => ({
+						...prevPlayerData,
+						name,
+						currentMap: "training field",
 					}));
 				}}
 			/>
