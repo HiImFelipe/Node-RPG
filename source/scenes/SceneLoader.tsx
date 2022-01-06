@@ -1,33 +1,21 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
 
 import { usePlayer } from "../contexts/playerContext";
-import Menu from "./menu";
+import SceneRender from "../components/DynamicComponentRender";
 
 const SceneLoader: FC = () => {
 	const { playerData } = usePlayer();
-	const [ComponentToRender, SetComponentToRender] = useState<any>();
 
-	useEffect(() => {
-		const importDynamicComponent = async () => {
-			if (playerData && playerData.currentMap) {
-				try {
-					const { default: Component } = await import(
-						`./${playerData.currentMap}`
-					);
-
-					return SetComponentToRender(() => Component);
-				} catch (e) {
-					console.log(e);
-				}
+	return (
+		<SceneRender
+			path={
+				playerData.currentMap
+					? `scenes/${playerData.currentMap}`
+					: "scenes/menu"
 			}
-
-			return SetComponentToRender(() => Menu);
-		};
-
-		importDynamicComponent();
-	}, [playerData]);
-
-	return ComponentToRender ? <ComponentToRender /> : null;
+			dependsOn={[playerData]}
+		/>
+	);
 };
 
 export default SceneLoader;
