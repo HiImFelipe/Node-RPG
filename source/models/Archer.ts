@@ -3,6 +3,8 @@ import { DEFAULT_ARCHER_VALUES } from "../constants/defaultStats";
 import { Player } from "./Player";
 
 export class Archer extends Player {
+	public job = "Archer";
+
 	constructor() {
 		super(
 			DEFAULT_ARCHER_VALUES.speed,

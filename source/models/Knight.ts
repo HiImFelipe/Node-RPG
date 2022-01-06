@@ -3,6 +3,8 @@ import { DEFAULT_KNIGHT_VALUES } from "../constants/defaultStats";
 import { Player } from "./Player";
 
 export class Knight extends Player {
+	public job = "Knight";
+
 	constructor() {
 		super(
 			DEFAULT_KNIGHT_VALUES.speed,
