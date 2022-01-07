@@ -15,55 +15,66 @@ const ActionItem: FC<IActionItem<string | number>> = ({
 	id,
 	totalNumberOfItems,
 	optionsPerRow,
+	onSelect,
 }) => {
 	const minId = 1;
 	const { focus, isFocused } = useFocus({ id, autoFocus: id === minId + "" });
 
-	useInput((_, key) => {
+	const acceptedMoves = {
+		upArrow() {
+			if (+id - optionsPerRow >= minId) {
+				const nextId = +id - optionsPerRow;
+				focus(nextId + "");
+
+				return;
+			}
+
+			focus(minId + "");
+		},
+		downArrow() {
+			if (+id + optionsPerRow <= totalNumberOfItems) {
+				const nextId = +id + optionsPerRow;
+				focus(nextId + "");
+
+				return;
+			}
+			focus(totalNumberOfItems + "");
+		},
+		leftArrow() {
+			if (+id - 1 >= minId) {
+				const nextId = +id - 1;
+				focus(nextId + "");
+
+				return;
+			}
+			focus(minId + "");
+		},
+		rightArrow() {
+			if (+id + 1 <= totalNumberOfItems) {
+				const nextId = +id + 1;
+				focus(nextId + "");
+
+				return;
+			}
+			focus(totalNumberOfItems + "");
+		},
+		return() {
+			onSelect();
+		},
+	};
+
+	useInput((_, possibleKeys) => {
 		if (isFocused) {
-			if (key.downArrow) {
-				if (+id + optionsPerRow < totalNumberOfItems) {
-					const nextId = +id + optionsPerRow;
-					focus(nextId + "");
+			const keyHit = Object.keys(possibleKeys)
+				.filter(
+					(key) =>
+						possibleKeys[key as keyof typeof possibleKeys] === true &&
+						key !== "meta"
+				)
+				.find(() => true);
 
-					return;
-				}
-
-				focus(totalNumberOfItems + "");
-			}
-
-			if (key.upArrow) {
-				if (+id - optionsPerRow > minId) {
-					const nextId = +id - optionsPerRow;
-					focus(nextId + "");
-
-					return;
-				}
-
-				focus(minId + "");
-			}
-
-			if (key.rightArrow) {
-				if (+id + 1 < totalNumberOfItems) {
-					const nextId = +id + 1;
-					focus(nextId + "");
-
-					return;
-				}
-
-				focus(totalNumberOfItems + "");
-			}
-
-			if (key.leftArrow) {
-				if (+id - 1 > minId) {
-					const nextId = +id - 1;
-					focus(nextId + "");
-
-					return;
-				}
-
-				focus(minId + "");
-			}
+			if (keyHit && acceptedMoves[keyHit as keyof typeof acceptedMoves])
+				acceptedMoves[keyHit as keyof typeof acceptedMoves]();
 		}
 	});
 
