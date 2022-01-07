@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { Box, Text, useFocus } from "ink";
+import { Box } from "ink";
 
-import { Row, Column } from "../../components";
+import { Row, Column, ProfileItem, ActionItem } from "../../components";
 import { usePlayer } from "../../contexts/playerContext";
 
 /**
@@ -10,42 +10,6 @@ import { usePlayer } from "../../contexts/playerContext";
 
 const Container: FC<typeof Box.defaultProps> = ({ children }) => {
 	return <Box>{children}</Box>;
-};
-
-interface IProfileItem<T> {
-	displayText?: T;
-	porpertyName: string;
-	[key: string]: any;
-}
-
-interface IActionItem<T> {
-	text: T;
-	id: string;
-}
-
-const ProfileItem: FC<IProfileItem<number | string>> = ({
-	displayText,
-	porpertyName,
-	children,
-	...props
-}) => {
-	return (
-		<Box {...props}>
-			<Text>{`${porpertyName}: ${displayText}`}</Text>
-		</Box>
-	);
-};
-
-const ActionItem: FC<IActionItem<string | number>> = ({ text, id }) => {
-	const { isFocused } = useFocus({ id });
-
-	return (
-		<Box flexGrow={1} flexShrink={1} flexBasis={0} justifyContent="center">
-			<Text>
-				{text} {isFocused && <Text color="green">(focused)</Text>}
-			</Text>
-		</Box>
-	);
 };
 
 const TrainingField: FC = () => {
