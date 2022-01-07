@@ -43,8 +43,6 @@ const RoleSelection: FC<IProps> = ({ setEventsData }) => {
 				const knight = new Knight();
 				setPlayerData((prevPlayerData) => ({ ...prevPlayerData, ...knight }));
 
-				setPlayerData(new Knight());
-
 				return postSelect();
 			default:
 				return;
