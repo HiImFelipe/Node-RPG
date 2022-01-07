@@ -8,13 +8,19 @@ interface IProps {
 	onPlayerSkip?: Function;
 }
 
-/*
-    Use-case: 
-        If you render plain text on Ink, it will think that your program has ended.
-
-        The library provides a React Hook that listens to keyboard events, which
-        will be called here.
-*/
+/**
+ *	A component that renders text over time. It's used to display dialogs (story or just NPC interactions).
+ *	It also supports a skip function.
+ *
+ *	@param {string} text - The text to display.
+ *	@param {Function} onPlayerSkip - A function to call when the player presses the enter key.
+ *
+ *	@example
+ *		<DialogBox text="Hello, world!" />
+ *
+ *	@example
+ *		<DialogBox text="Hello, world!" onPlayerSkip={() => console.log("Player skipped dialog.")} />
+ */
 
 const DialogBox: FC<IProps> = ({ text, onPlayerSkip }) => {
 	const [textToDisplay, setTextToDisplay] = useState("");

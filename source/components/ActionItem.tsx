@@ -10,6 +10,21 @@ interface IActionItem<T> {
 	totalNumberOfItems: number;
 }
 
+/**
+ * Menu item that can be selected. It handles the focus and the selection.
+ * 
+ * @param {IItem} props - The properties to display.
+ * 
+ * @example
+ * 	<ActionItem text="Hello" id="hello" onSelect={() => console.log("Hello")} />
+ * 
+ * @example
+ * 	<ActionItem text="Hello" id="hello" onSelect={() => console.log("Hello")} optionsPerRow={2} totalNumberOfItems={4} />
+ * 
+ * @example
+ * 	<ActionItem text="Hello" id="hello" onSelect={() => console.log("Hello")} optionsPerRow={2} totalNumberOfItems={4} />
+ */
+
 const ActionItem: FC<IActionItem<string | number>> = ({
 	text,
 	id,

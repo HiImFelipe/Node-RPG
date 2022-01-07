@@ -2,7 +2,7 @@ import { Box } from "ink";
 import React, { FC } from "react";
 
 /**
- * Ink default Box with flexDirection set to column.
+ * Ink's Box with flexDirection set to column.
  */
 
 const Column: FC<typeof Box.defaultProps> = ({ children, ...props }) => {
