@@ -17,7 +17,7 @@ const ActionItem: FC<IActionItem<string | number>> = ({
 	optionsPerRow,
 }) => {
 	const minId = 1;
-	const { focus, isFocused } = useFocus({ id, autoFocus: id === minId + '' });
+	const { focus, isFocused } = useFocus({ id, autoFocus: id === minId + "" });
 
 	useInput((_, key) => {
 		if (isFocused) {
@@ -33,7 +33,7 @@ const ActionItem: FC<IActionItem<string | number>> = ({
 			}
 
 			if (key.upArrow) {
-				if (+id - optionsPerRow < minId) {
+				if (+id - optionsPerRow > minId) {
 					const nextId = +id - optionsPerRow;
 					focus(nextId + "");
 
