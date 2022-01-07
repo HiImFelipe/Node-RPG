@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Box } from "ink";
 
-import { Row, Column, ProfileItem, ActionItem } from "../../components";
+import { Row, Column, ProfileItem, Options } from "../../components";
 import { usePlayer } from "../../contexts/playerContext";
 
 /**
@@ -18,15 +18,15 @@ const TrainingField: FC = () => {
 	return (
 		<Container>
 			<Column borderStyle="single" width={"70%"} paddingY={2}>
-				<Row flexGrow={1}>
-					<ActionItem text="Option 1" id="1" />
-					<ActionItem text="Option 2" id="2" />
-				</Row>
-
-				<Row flexGrow={1}>
-					<ActionItem text="Option 3" id="3" />
-					<ActionItem text="Option 4" id="4" />
-				</Row>
+				<Options
+					items={[
+						{ name: "Option 1", onSelect: () => {} },
+						{ name: "Option 2", onSelect: () => {} },
+						{ name: "Option 3", onSelect: () => {} },
+						{ name: "Option 4", onSelect: () => {} },
+					]}
+					optionsPerRow={3}
+				/>
 			</Column>
 
 			<Column borderStyle="single" flexGrow={1} paddingY={2}>
