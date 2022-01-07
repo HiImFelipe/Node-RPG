@@ -1,19 +1,10 @@
 import React, { FC } from "react";
-import { Box } from "ink";
 
-import { Row, Column, ProfileItem, Options } from "../../components";
+import { Row, Column, ProfileItem, Options, Container } from "../../components";
 import { usePlayer } from "../../contexts/playerContext";
 
-/**
- * Ink default Box with a semantic name to indicate it's function.
- */
-
-const Container: FC<typeof Box.defaultProps> = ({ children }) => {
-	return <Box>{children}</Box>;
-};
-
 const TrainingField: FC = () => {
-	const { playerData } = usePlayer();
+	const { playerData, setPlayerData } = usePlayer();
 
 	return (
 		<Container>
@@ -23,9 +14,14 @@ const TrainingField: FC = () => {
 						{ name: "Option 1", onSelect: () => {} },
 						{ name: "Option 2", onSelect: () => {} },
 						{ name: "Option 3", onSelect: () => {} },
-						{ name: "Option 4", onSelect: () => {} },
+						{
+							name: "Back",
+							onSelect: () => {
+								setPlayerData({ ...playerData, currentMap: "menu" });
+							},
+						},
 					]}
-					optionsPerRow={3}
+					optionsPerRow={2}
 				/>
 			</Column>
 
