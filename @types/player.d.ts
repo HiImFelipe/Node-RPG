@@ -11,7 +11,7 @@ interface IPlayer {
 	attack: number;
 	defense: number;
 	speed: number;
-	currentMap?: string;
+	currentMap?: "menu" | "character creation" | "training field";
 	specialAbilities: ISpecialAbility[];
 	addSpecialAbility(id: number): void;
 	replaceSpecialAbility(currentSlot: number, id: number): void;

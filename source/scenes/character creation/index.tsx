@@ -4,7 +4,7 @@ import { Box, Text } from "ink";
 import { DynamicComponentRender as EventRender } from "../../components";
 
 export interface IEventsHandler {
-	currentEvent: string;
+	currentEvent: "name selection" | "role selection";
 }
 
 const PATH_RELATIVE_TO_SOURCE = "scenes/character creation";
